@@ -9,7 +9,7 @@ import TechStack from "./components/tech-stack"
 import AnimatedBeam from "@/app/animated-beam-wrapper";
 
 export default function Page() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null )
   const mousePositionRef = useRef({ x: 0, y: 0 })
   const isTouchingRef = useRef(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -50,7 +50,7 @@ export default function Page() {
       ctx.save()
 
       // Just center the custom text
-      const fontSize = isMobile ? 48 : 100
+      const fontSize = isMobile ? 48 : 150
       ctx.font = `bold ${fontSize}px Poppins, Arial, sans-serif`
       ctx.textAlign = "center"
       ctx.textBaseline = "middle"
@@ -107,8 +107,9 @@ export default function Page() {
     function animate(scale: number) {
       if (!ctx || !canvas) return
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = "white"
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      
+      // ctx.fillStyle = "white"
+      // ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       const { x: mouseX, y: mouseY } = mousePositionRef.current
       const maxDistance = 240
@@ -131,7 +132,7 @@ export default function Page() {
         } else {
           p.x += (p.baseX - p.x) * 0.1
           p.y += (p.baseY - p.y) * 0.1
-          ctx.fillStyle = "black" // Ensure this is always black for resting particles
+          ctx.fillStyle = "white" // Ensure this is always black for resting particles
         }
 
         ctx.fillRect(p.x, p.y, p.size, p.size)
@@ -223,7 +224,7 @@ export default function Page() {
     <div className="min-h-screen bg-background">
       
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-20 items-center">
+        <div className="flex h-20 items-center">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-10 flex items-center space-x-2" href="/">
               <span className="hidden font-bold sm:inline-block">Bilal.dev</span>
@@ -246,31 +247,32 @@ export default function Page() {
         </div>
       </header>
 
-      <main className="container ">
-        <div className="relative w-full h-[70dvh] flex flex-col items-center justify-center">
+      <main className="">
+        <div className="relative w-full h-[70dvh] flex flex-col items-center justify-center bg-dark">
           <canvas
             ref={canvasRef}
             className="w-full h-full absolute top-0 left-0 touch-none"
             aria-label="Interactive particle effect with BILAL SHUJA text"
+            style={{marginTop:"-8em"}}
           />
 
-          <div className="absolute bottom-[100px] text-center z-10">
-            <p className="font-mono text-gray-400 text-xs sm:text-base md:text-sm ">
-              <span className="text-black-300">Crafting Code</span>
+          <div className="absolute text-center z-10">
+            <p className="font-mono text-gray-400 text-xs sm:text-base md:text-sm">
+              <span className="text-gray-200">Crafting Code</span>
               {" • "}
-              <span className="text-black-300">Building Dreams</span>
+              <span className="text-gray-200">Building Dreams</span>
               {" • "}
               <span className="transition-colors duration-300" style={{ color: "#FF9900" }}>
              Create Legacy
               </span>
               <br />
-              <span className="text-gray-500 text-xs mt-2.5 inline-block">Software Engineer & Problem Solver</span>
+              <span className="text-gray-300 text-xs mt-2.5 inline-block">Software Engineer & Problem Solver</span>
             </p>
           </div>
         </div>
 
         <section id="projects" className="py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
+          <div className=" px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">Projects</h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               <ProjectCard
@@ -299,7 +301,7 @@ export default function Page() {
         </section>
 
         <section className="py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
+          <div className=" px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
               Tech Stack
             </h2>
@@ -310,7 +312,7 @@ export default function Page() {
         </section>
 
         <section id="contact" className="py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
+          <div className=" px-4 md:px-6">
             <div className="mx-auto max-w-2xl">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
                 Get in Touch
@@ -322,7 +324,7 @@ export default function Page() {
       </main>
 
       <footer className="border-t">
-        <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
+        <div className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
           <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Bilal.dev. All rights reserved.</p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
             <Link className="text-xs hover:underline underline-offset-4" href="#">
